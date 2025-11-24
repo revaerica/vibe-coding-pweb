@@ -1,0 +1,13 @@
+node_modules/
+.env
+.env.local
+.env.production
+
+uploads/receipts/*
+!uploads/receipts/.gitkeep
+
+logs/
+*.log
+
+.DS_Store
+Thumbs.db
