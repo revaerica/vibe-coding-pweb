@@ -29,7 +29,7 @@ const Header = () => {
       }}>
         {/* Logo */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <span style={{ fontSize: '28px' }}>🍔</span>
+          <span style={{ fontSize: '28px' }}>🪙</span>
           <h1 style={{
             fontSize: '24px',
             fontWeight: '700',
@@ -178,5 +178,6 @@ const Header = () => {
     </header>
   );
 };
+
 
 export default Header;
