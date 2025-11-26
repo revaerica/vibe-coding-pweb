@@ -68,7 +68,7 @@ const AuthScreen = () => {
       }}>
         {/* Logo & Title */}
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <div style={{ fontSize: '48px', marginBottom: '8px' }}>🍔</div>
+          <div style={{ fontSize: '48px', marginBottom: '8px' }}>🪙</div>
           <h1 style={{
             fontSize: '28px',
             fontWeight: '700',
@@ -240,5 +240,6 @@ const AuthScreen = () => {
     </div>
   );
 };
+
 
 export default AuthScreen;
