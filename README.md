@@ -609,4 +609,7 @@ REACT_APP_API_URL=http://localhost:5000/api
 
 ### Mobile Responsive
 
+<img width="332" height="720" alt="image" src="https://github.com/user-attachments/assets/dc9d2fbd-f083-4ca9-9f7b-5be7ded2af4e" />
+
+<img width="1044" height="1012" alt="image" src="https://github.com/user-attachments/assets/ba5b9cc3-d5fd-482f-b0ea-8b759c6367a7" />
 
