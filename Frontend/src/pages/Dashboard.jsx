@@ -86,39 +86,44 @@ const Dashboard = () => {
     }}>
       <Header />
 
-      <main style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '24px'
-      }}>
-        {/* Stats Cards - 4 cards */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: '16px',
-          marginBottom: '24px'
-        }}>
-          <StatsCard
-            type="total"
-            value={totalExpenses}
-            label="Total Pengeluaran"
-          />
-          <StatsCard
-            type="monthly"
-            value={totalMonthlyExpenses}
-            label="Bulan Ini"
-          />
-          <StatsCard
-            type="daily"
-            value={averageDaily}
-            label="Rata-rata/Hari"
-          />
-          <StatsCard
-            type="transactions"
-            value={totalTransactions}
-            label="Transaksi"
-          />
-        </div>
+     <main style={{
+  maxWidth: '1200px',
+  margin: '0 auto',
+  padding: window.innerWidth < 768 ? '16px' : '24px'  // Padding lebih kecil di mobile
+}}>
+  
+       {/* Stats Cards - 4 cards RESPONSIVE */}
+<div style={{
+  display: 'grid',
+  gridTemplateColumns: 
+    window.innerWidth > 1200 ? 'repeat(4, 1fr)' :      // Desktop besar: 4 kolom
+    window.innerWidth > 900 ? 'repeat(2, 1fr)' :       // Desktop kecil/Tablet: 2 kolom
+    window.innerWidth > 600 ? 'repeat(2, 1fr)' :       // Mobile landscape: 2 kolom
+    '1fr',                                              // Mobile portrait: 1 kolom
+  gap: window.innerWidth < 768 ? '12px' : '16px',      // Gap lebih kecil di mobile
+  marginBottom: '24px'
+}}>
+  <StatsCard
+    type="total"
+    value={totalExpenses}
+    label="Total Pengeluaran"
+  />
+  <StatsCard
+    type="monthly"
+    value={totalMonthlyExpenses}
+    label="Bulan Ini"
+  />
+  <StatsCard
+    type="daily"
+    value={averageDaily}
+    label="Rata-rata/Hari"
+  />
+  <StatsCard
+    type="transactions"
+    value={totalTransactions}
+    label="Transaksi"
+  />
+</div>
 
         {/* Quick Insights */}
         {expenses.length > 0 && (
