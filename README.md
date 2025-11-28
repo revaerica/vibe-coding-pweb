@@ -601,11 +601,11 @@ REACT_APP_API_URL=http://localhost:5000/api
 
 ### Light Mode
 
-<img width="1919" height="1103" alt="image" src="https://github.com/user-attachments/assets/9328a6d3-4705-434c-a5b5-b7a3a0437d9f" />
+<img width="1919" height="1041" alt="image" src="https://github.com/user-attachments/assets/bc7b6e7c-7105-4ccc-a1b8-4e2be19912bb" />
 
 ### Dark Mode
 
-<img width="1887" height="1040" alt="image" src="https://github.com/user-attachments/assets/f8c641e4-06c6-465c-931d-8477d0f77c48" />
+<img width="1919" height="1008" alt="image" src="https://github.com/user-attachments/assets/d7224f8d-8c03-4ad6-a962-f62ac0b202bf" />
 
 ### Mobile Responsive
 
