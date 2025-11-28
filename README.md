@@ -603,9 +603,17 @@ REACT_APP_API_URL=http://localhost:5000/api
 
 <img width="1919" height="1041" alt="image" src="https://github.com/user-attachments/assets/bc7b6e7c-7105-4ccc-a1b8-4e2be19912bb" />
 
+<img width="1919" height="965" alt="image" src="https://github.com/user-attachments/assets/79bfda84-3843-4078-9b54-3aeac804672d" />
+
+<img width="1844" height="488" alt="image" src="https://github.com/user-attachments/assets/fb0e98ab-e540-4304-b6e1-b56037dc6d94" />
+
 ### Dark Mode
 
 <img width="1919" height="1008" alt="image" src="https://github.com/user-attachments/assets/d7224f8d-8c03-4ad6-a962-f62ac0b202bf" />
+
+<img width="1897" height="924" alt="image" src="https://github.com/user-attachments/assets/c9b95bd1-5514-46b4-88c5-b537260397c6" />
+
+<img width="1901" height="471" alt="image" src="https://github.com/user-attachments/assets/1a417d27-0d78-4e8a-a594-aa264c303c38" />
 
 ### Mobile Responsive
 
