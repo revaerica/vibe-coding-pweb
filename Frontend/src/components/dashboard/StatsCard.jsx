@@ -1,5 +1,5 @@
 import React from 'react';
-import { DollarSign, Receipt } from 'lucide-react';
+import { DollarSign, Receipt, Calendar, TrendingDown } from 'lucide-react';
 import { useTheme } from '../../hooks/useTheme';
 import { formatCurrency } from '../../utils/formatters';
 
@@ -10,6 +10,10 @@ const StatsCard = ({ type, value, label }) => {
     switch (type) {
       case 'total':
         return <DollarSign size={24} color={theme.colors.accent} />;
+      case 'monthly':
+        return <Calendar size={24} color={theme.colors.accentLight} />;
+      case 'daily':
+        return <TrendingDown size={24} color="#8B5CF6" />;
       case 'transactions':
         return <Receipt size={24} color={theme.colors.accentLight} />;
       default:
@@ -21,11 +25,22 @@ const StatsCard = ({ type, value, label }) => {
     switch (type) {
       case 'total':
         return theme.colors.accent + '20';
+      case 'monthly':
+        return theme.colors.accentLight + '20';
+      case 'daily':
+        return '#8B5CF620';
       case 'transactions':
         return theme.colors.accentLight + '20';
       default:
         return theme.colors.accent + '20';
     }
+  };
+
+  const formatValue = () => {
+    if (type === 'transactions') {
+      return value;
+    }
+    return formatCurrency(value);
   };
 
   return (
@@ -66,12 +81,12 @@ const StatsCard = ({ type, value, label }) => {
             {label}
           </p>
           <h2 style={{
-            fontSize: '32px',
+            fontSize: '28px',
             fontWeight: '700',
             color: theme.colors.text,
             margin: 0
           }}>
-            {type === 'total' ? formatCurrency(value) : value}
+            {formatValue()}
           </h2>
         </div>
 
