@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { PlusCircle } from 'lucide-react';
+import { PlusCircle, X } from 'lucide-react';
 import { useTheme } from '../hooks/useTheme';
 import { useExpenses } from '../hooks/useExpenses';
 import Header from '../components/layout/Header';
 import StatsCard from '../components/dashboard/StatsCard';
+import QuickInsights from '../components/dashboard/QuickInsights';
 import ExpenseForm from '../components/dashboard/ExpenseForm';
 import ExpenseList from '../components/dashboard/ExpenseList';
 import CategoryBreakdown from '../components/dashboard/CategoryBreakdown';
@@ -17,6 +18,19 @@ const Dashboard = () => {
   // Calculate stats
   const totalExpenses = expenses.reduce((sum, exp) => sum + exp.amount, 0);
   const totalTransactions = expenses.length;
+
+  // Calculate monthly expenses (bulan ini)
+  const currentMonth = new Date().getMonth();
+  const currentYear = new Date().getFullYear();
+  const monthlyExpenses = expenses.filter(exp => {
+    const expDate = new Date(exp.date);
+    return expDate.getMonth() === currentMonth && expDate.getFullYear() === currentYear;
+  });
+  const totalMonthlyExpenses = monthlyExpenses.reduce((sum, exp) => sum + exp.amount, 0);
+
+  // Calculate daily average
+  const daysWithExpenses = [...new Set(expenses.map(exp => new Date(exp.date).toDateString()))].length;
+  const averageDaily = daysWithExpenses > 0 ? totalExpenses / daysWithExpenses : 0;
 
   const handleCreateExpense = async (expenseData) => {
     const result = await createExpense(expenseData);
@@ -77,24 +91,39 @@ const Dashboard = () => {
         margin: '0 auto',
         padding: '24px'
       }}>
-        {/* Stats Cards */}
+        {/* Stats Cards - 4 cards */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
           gap: '16px',
           marginBottom: '24px'
         }}>
           <StatsCard
             type="total"
             value={totalExpenses}
-            label="Total Expenses"
+            label="Total Pengeluaran"
+          />
+          <StatsCard
+            type="monthly"
+            value={totalMonthlyExpenses}
+            label="Bulan Ini"
+          />
+          <StatsCard
+            type="daily"
+            value={averageDaily}
+            label="Rata-rata/Hari"
           />
           <StatsCard
             type="transactions"
             value={totalTransactions}
-            label="Total Transactions"
+            label="Transaksi"
           />
         </div>
+
+        {/* Quick Insights */}
+        {expenses.length > 0 && (
+          <QuickInsights expenses={expenses} />
+        )}
 
         {/* Add Expense Button */}
         <button
@@ -135,8 +164,17 @@ const Dashboard = () => {
               : '0 4px 16px rgba(227,178,60,0.3)';
           }}
         >
-          <PlusCircle size={20} />
-          {showForm ? 'Cancel' : 'Add New Expense'}
+          {showForm ? (
+            <>
+              <X size={20} />
+              Cancel
+            </>
+          ) : (
+            <>
+              <PlusCircle size={20} />
+              Add New Expense
+            </>
+          )}
         </button>
 
         {/* Expense Form */}
