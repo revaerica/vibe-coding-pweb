@@ -5,19 +5,21 @@ import { formatCurrency } from '../../utils/formatters';
 
 const StatsCard = ({ type, value, label }) => {
   const theme = useTheme();
+  const isMobile = window.innerWidth < 768;
 
   const getIcon = () => {
+    const iconSize = isMobile ? 20 : 24;
     switch (type) {
       case 'total':
-        return <DollarSign size={24} color={theme.colors.accent} />;
+        return <DollarSign size={iconSize} color={theme.colors.accent} />;
       case 'monthly':
-        return <Calendar size={24} color={theme.colors.accentLight} />;
+        return <Calendar size={iconSize} color={theme.colors.accentLight} />;
       case 'daily':
-        return <TrendingDown size={24} color="#8B5CF6" />;
+        return <TrendingDown size={iconSize} color="#8B5CF6" />;
       case 'transactions':
-        return <Receipt size={24} color={theme.colors.accentLight} />;
+        return <Receipt size={iconSize} color={theme.colors.accentLight} />;
       default:
-        return <DollarSign size={24} color={theme.colors.accent} />;
+        return <DollarSign size={iconSize} color={theme.colors.accent} />;
     }
   };
 
@@ -46,34 +48,39 @@ const StatsCard = ({ type, value, label }) => {
   return (
     <div style={{
       background: theme.colors.bgCard,
-      borderRadius: '12px',
-      padding: '24px',
+      borderRadius: isMobile ? '10px' : '12px',
+      padding: isMobile ? '16px' : '24px',
       border: `1px solid ${theme.colors.border}`,
       boxShadow: theme.isDark
         ? '0 4px 16px rgba(0,0,0,0.2)'
         : '0 4px 16px rgba(0,0,0,0.06)',
-      transition: 'transform 0.2s, box-shadow 0.2s'
+      transition: 'transform 0.2s, box-shadow 0.2s',
+      minHeight: isMobile ? 'auto' : '140px'
     }}
     onMouseEnter={(e) => {
-      e.currentTarget.style.transform = 'translateY(-4px)';
-      e.currentTarget.style.boxShadow = theme.isDark
-        ? '0 8px 24px rgba(0,0,0,0.3)'
-        : '0 8px 24px rgba(0,0,0,0.12)';
+      if (!isMobile) {
+        e.currentTarget.style.transform = 'translateY(-4px)';
+        e.currentTarget.style.boxShadow = theme.isDark
+          ? '0 8px 24px rgba(0,0,0,0.3)'
+          : '0 8px 24px rgba(0,0,0,0.12)';
+      }
     }}
     onMouseLeave={(e) => {
-      e.currentTarget.style.transform = 'translateY(0)';
-      e.currentTarget.style.boxShadow = theme.isDark
-        ? '0 4px 16px rgba(0,0,0,0.2)'
-        : '0 4px 16px rgba(0,0,0,0.06)';
+      if (!isMobile) {
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.boxShadow = theme.isDark
+          ? '0 4px 16px rgba(0,0,0,0.2)'
+          : '0 4px 16px rgba(0,0,0,0.06)';
+      }
     }}>
       <div style={{
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'flex-start'
       }}>
-        <div>
+        <div style={{ flex: 1 }}>
           <p style={{
-            fontSize: '14px',
+            fontSize: isMobile ? '12px' : '14px',
             color: theme.colors.textSecondary,
             margin: '0 0 8px 0',
             fontWeight: '500'
@@ -81,22 +88,25 @@ const StatsCard = ({ type, value, label }) => {
             {label}
           </p>
           <h2 style={{
-            fontSize: '28px',
+            fontSize: isMobile ? '22px' : '28px',
             fontWeight: '700',
             color: theme.colors.text,
-            margin: 0
+            margin: 0,
+            wordBreak: 'break-word'
           }}>
             {formatValue()}
           </h2>
         </div>
 
         <div style={{
-          padding: '12px',
+          padding: isMobile ? '8px' : '12px',
           background: getIconBg(),
-          borderRadius: '10px',
+          borderRadius: isMobile ? '8px' : '10px',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center'
+          justifyContent: 'center',
+          flexShrink: 0,
+          marginLeft: '8px'
         }}>
           {getIcon()}
         </div>
