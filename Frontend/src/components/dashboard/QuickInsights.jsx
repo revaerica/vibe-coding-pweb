@@ -5,6 +5,7 @@ import { formatCurrency } from '../../utils/formatters';
 
 const QuickInsights = ({ expenses }) => {
   const theme = useTheme();
+  const isMobile = window.innerWidth < 768;
 
   // Calculate top category
   const categoryTotals = expenses.reduce((acc, exp) => {
@@ -39,51 +40,54 @@ const QuickInsights = ({ expenses }) => {
   return (
     <div style={{
       background: theme.colors.bgCard,
-      borderRadius: '12px',
-      padding: '24px',
-      marginBottom: '24px',
+      borderRadius: isMobile ? '10px' : '12px',
+      padding: isMobile ? '16px' : '24px',
+      marginBottom: isMobile ? '16px' : '24px',
       border: `1px solid ${theme.colors.border}`,
       boxShadow: theme.isDark
         ? '0 4px 16px rgba(0,0,0,0.2)'
         : '0 4px 16px rgba(0,0,0,0.06)'
     }}>
       <h3 style={{
-        fontSize: '18px',
+        fontSize: isMobile ? '16px' : '18px',
         fontWeight: '600',
         color: theme.colors.text,
-        margin: '0 0 8px 0'
+        margin: '0 0 6px 0'
       }}>
         Quick Insights
       </h3>
       <p style={{
-        fontSize: '14px',
+        fontSize: isMobile ? '12px' : '14px',
         color: theme.colors.textSecondary,
-        margin: '0 0 20px 0'
+        margin: '0 0 16px 0'
       }}>
         Your spending patterns at a glance
       </p>
 
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-        gap: '16px'
+        gridTemplateColumns: 
+          window.innerWidth > 900 ? 'repeat(3, 1fr)' :      // Desktop: 3 kolom
+          window.innerWidth > 600 ? 'repeat(2, 1fr)' :      // Tablet: 2 kolom
+          '1fr',                                             // Mobile: 1 kolom
+        gap: isMobile ? '12px' : '16px'
       }}>
         {/* Top Category */}
         <div style={{
-          padding: '16px',
+          padding: isMobile ? '12px' : '16px',
           background: theme.colors.bgSecondary,
-          borderRadius: '10px',
+          borderRadius: isMobile ? '8px' : '10px',
           border: `1px solid ${theme.colors.border}`
         }}>
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '8px',
+            gap: '6px',
             marginBottom: '8px'
           }}>
-            <Award size={18} color={theme.colors.accent} />
+            <Award size={isMobile ? 16 : 18} color={theme.colors.accent} />
             <span style={{
-              fontSize: '13px',
+              fontSize: isMobile ? '11px' : '13px',
               fontWeight: '500',
               color: theme.colors.textSecondary
             }}>
@@ -91,14 +95,14 @@ const QuickInsights = ({ expenses }) => {
             </span>
           </div>
           <div style={{
-            fontSize: '18px',
+            fontSize: isMobile ? '16px' : '18px',
             fontWeight: '600',
             color: theme.colors.text
           }}>
             {topCategory ? topCategory[0] : 'N/A'}
           </div>
           <div style={{
-            fontSize: '13px',
+            fontSize: isMobile ? '11px' : '13px',
             color: theme.colors.textSecondary,
             marginTop: '4px'
           }}>
@@ -108,20 +112,20 @@ const QuickInsights = ({ expenses }) => {
 
         {/* Average Daily Spend */}
         <div style={{
-          padding: '16px',
+          padding: isMobile ? '12px' : '16px',
           background: theme.colors.bgSecondary,
-          borderRadius: '10px',
+          borderRadius: isMobile ? '8px' : '10px',
           border: `1px solid ${theme.colors.border}`
         }}>
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '8px',
+            gap: '6px',
             marginBottom: '8px'
           }}>
-            <TrendingUp size={18} color={theme.colors.accentLight} />
+            <TrendingUp size={isMobile ? 16 : 18} color={theme.colors.accentLight} />
             <span style={{
-              fontSize: '13px',
+              fontSize: isMobile ? '11px' : '13px',
               fontWeight: '500',
               color: theme.colors.textSecondary
             }}>
@@ -129,14 +133,14 @@ const QuickInsights = ({ expenses }) => {
             </span>
           </div>
           <div style={{
-            fontSize: '18px',
+            fontSize: isMobile ? '16px' : '18px',
             fontWeight: '600',
             color: theme.colors.text
           }}>
             {formatCurrency(avgDaily)}
           </div>
           <div style={{
-            fontSize: '13px',
+            fontSize: isMobile ? '11px' : '13px',
             color: theme.colors.textSecondary,
             marginTop: '4px'
           }}>
@@ -146,20 +150,20 @@ const QuickInsights = ({ expenses }) => {
 
         {/* Most Active Day */}
         <div style={{
-          padding: '16px',
+          padding: isMobile ? '12px' : '16px',
           background: theme.colors.bgSecondary,
-          borderRadius: '10px',
+          borderRadius: isMobile ? '8px' : '10px',
           border: `1px solid ${theme.colors.border}`
         }}>
           <div style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '8px',
+            gap: '6px',
             marginBottom: '8px'
           }}>
-            <Calendar size={18} color="#8B5CF6" />
+            <Calendar size={isMobile ? 16 : 18} color="#8B5CF6" />
             <span style={{
-              fontSize: '13px',
+              fontSize: isMobile ? '11px' : '13px',
               fontWeight: '500',
               color: theme.colors.textSecondary
             }}>
@@ -167,14 +171,14 @@ const QuickInsights = ({ expenses }) => {
             </span>
           </div>
           <div style={{
-            fontSize: '18px',
+            fontSize: isMobile ? '16px' : '18px',
             fontWeight: '600',
             color: theme.colors.text
           }}>
             {mostActiveDay ? mostActiveDay[0] : 'N/A'}
           </div>
           <div style={{
-            fontSize: '13px',
+            fontSize: isMobile ? '11px' : '13px',
             color: theme.colors.textSecondary,
             marginTop: '4px'
           }}>
